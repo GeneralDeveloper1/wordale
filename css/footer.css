@@ -1,0 +1,40 @@
+footer {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.keyboard-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.keyboard-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 5px;
+  width: 40px;
+  height: 65px;
+  background-color: rgba(173, 169, 169, 0.664);
+
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.wide {
+  width: 80px;
+}
+
+.backspace-icon {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
