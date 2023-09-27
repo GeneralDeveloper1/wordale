@@ -1,5 +1,3 @@
-const 정답 = "APPLE";
-
 let index = 0;
 let attempts = 0;
 let timer;
@@ -22,8 +20,12 @@ function appStart() {
     attempts++;
     index = 0;
   };
-  const handleEnterKey = () => {
+  const handleEnterKey = async () => {
     let 맞은_갯수 = 0;
+    //서버에서 정답을 받아오는 코드
+    const 응답 = await fetch("/answer");
+    const 정답 = await 응답.json();
+
     for (let i = 0; i < 5; i++) {
       const block = document.querySelector(
         `.board-block[data-index='${attempts}${i}']`
@@ -69,13 +71,19 @@ function appStart() {
     }
   };
 
+  // const handleMouseClick = (event) => {
+  //   const key = event.key;
+  //   const keyCode = event.keyCode;
+  //   console.log("asd");
+  // };
+
   const startTimer = () => {
     const 시작_시간 = new Date();
     function setTime() {
       const 현재_시간 = new Date();
       const 흐른_시간 = new Date(현재_시간 - 시작_시간);
-      const 분 = 흐른_시간.getMilliseconds().toString().padStart(2, "0");
-      const 초 = 흐른_시간.getSeconds().toString90.padStart(2, "0");
+      const 분 = 흐른_시간.getMinutes().toString().padStart(2, "0");
+      const 초 = 흐른_시간.getSeconds().toString().padStart(2, "0");
       const timeDiv = document.querySelector("#timer");
       timeDiv.innerText = `${분}:${초}`;
     }
@@ -83,6 +91,21 @@ function appStart() {
   };
   startTimer();
   window.addEventListener("keydown", handleKeydown);
+  // window.addEventListener("click", handleMouseClick);
 }
+
+function test(key) {
+  console.log("test");
+  const clickBlock = document.querySelector(
+    `.keyboard-column[data-key='${key}']`
+  );
+
+  console.log("key :", key, "clckBlock :", clickBlock);
+}
+const handleMouseClick = (event) => {
+  const key = event.key;
+  const keyCode = event.keyCode;
+  console.log("asd");
+};
 
 appStart();
